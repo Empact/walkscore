@@ -16,14 +16,14 @@ class MockClient
   end
 end
 
-describe WalkscoreApi::Walkscore do
+describe Walkscore::Walkscore do
   before(:each) do
-    WalkscoreApi::Walkscore.stub(:client).and_return(MockClient.new)
+    Walkscore::Walkscore.stub(:client).and_return(MockClient.new)
   end
 
   describe '.find(location, api_key)' do
-    it 'returns an instance of WalkscoreApi::Walkscore' do
-      WalkscoreApi::Walkscore.find({lat: 40.7143528 , long: -74.00597309999999}, API_KEY).should be_a(WalkscoreApi::Walkscore)
+    it 'returns an instance of Walkscore::Walkscore' do
+      Walkscore::Walkscore.find({lat: 40.7143528 , long: -74.00597309999999}, API_KEY).should be_a(Walkscore::Walkscore)
     end
   end
 end

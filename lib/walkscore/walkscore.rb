@@ -1,6 +1,6 @@
 require 'json'
 
-module WalkscoreApi
+module Walkscore
   class Walkscore
     attr_accessor :score, :description, :updated, :logo_url, :ws_link
 
@@ -13,12 +13,12 @@ module WalkscoreApi
     end
 
     def self.client
-      WalkscoreApi::Client.new
+      Walkscore::Client.new
     end
 
     def self.find(location, api_key)
       parsed_results = JSON.parse(client.make_connection(location, api_key))
-      WalkscoreApi::Walkscore.new(parsed_results)
+      Walkscore::Walkscore.new(parsed_results)
     end
   end
 end

@@ -1,6 +1,6 @@
 require 'faraday'
 
-module WalkscoreApi
+module Walkscore
   class Client
     BASE_URL = 'http://api.walkscore.com'
 
