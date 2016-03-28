@@ -1,5 +1,6 @@
 require 'spec_helper'
 require 'support/vcr'
+require 'support/dotenv'
 
 describe Walkscore::Client do
   describe '#make_connection', :vcr do
