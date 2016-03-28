@@ -13,12 +13,12 @@ module Walkscore
     end
 
     def self.client
-      Walkscore::Client.new
+      Client.new
     end
 
     def self.find(location, api_key)
       parsed_results = JSON.parse(client.make_connection(location, api_key))
-      Walkscore::Walkscore.new(parsed_results)
+      new(parsed_results)
     end
   end
 end

@@ -18,12 +18,13 @@ end
 
 describe Walkscore::Walkscore do
   before(:each) do
-    Walkscore::Walkscore.stub(:client).and_return(MockClient.new)
+    allow(Walkscore::Walkscore).to receive(:client).and_return(MockClient.new)
   end
 
   describe '.find(location, api_key)' do
-    it 'returns an instance of Walkscore::Walkscore' do
-      Walkscore::Walkscore.find({lat: 40.7143528 , long: -74.00597309999999}, API_KEY).should be_a(Walkscore::Walkscore)
+    it 'returns an instance of WalkscoreApi::Walkscore' do
+      expect(Walkscore::Walkscore.find({lat: 40.7143528 , long: -74.00597309999999}, 'FAKE_API_KEY')).
+        to be_a(Walkscore::Walkscore)
     end
   end
 end
