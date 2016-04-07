@@ -11,8 +11,9 @@ module Walkscore
     end
 
     def find(location)
-      parsed_results = JSON.parse(make_connection(location))
-      Response.new(parsed_results)
+      if response = make_connection(location)
+        Response.new(response)
+      end
     end
 
     def make_connection(location)
@@ -25,7 +26,28 @@ module Walkscore
         req.params['address'] = location[:address] if location[:address]
         req.params['wsapikey'] = @api_key
       end
-      response.body
+      case response.status
+      when 200
+        json_body = JSON.parse(response.body)
+        case json_body['status']
+        when 1, 2
+          json_body
+        when 40
+          raise InvalidApiKey.new(response)
+        when 41
+          raise DailyQuotaExceeded.new(response)
+        else
+          raise UnexpectedStatus.new(response)
+        end
+      when 403
+        raise IpAddressBlocked.new(response)
+      when 404
+        raise InvalidLatLong.new(response)
+      when 500..599
+        raise InternalError.new(response)
+      else
+        raise UnexpectedResponseCode.new(response)
+      end
     end
   end
 end
