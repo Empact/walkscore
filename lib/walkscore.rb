@@ -1,3 +1,3 @@
 require "walkscore/version"
-require "walkscore/client"
 require "walkscore/response"
+require "walkscore/client"

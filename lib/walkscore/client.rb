@@ -22,6 +22,7 @@ module Walkscore
         req.params['format'] = 'json'
         req.params['lat'] = location[:lat]
         req.params['lon'] = location[:long]
+        req.params['address'] = location[:address] if location[:address]
         req.params['wsapikey'] = @api_key
       end
       response.body
