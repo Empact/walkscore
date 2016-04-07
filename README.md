@@ -19,7 +19,7 @@ Or install it yourself as:
 
 ### There is only one external method you will be using to interact with the api.
 
-### Walkscore::Walkscore.find({lat: 40.7143528 , long: -74.00597309999999 }, API_KEY)
+### Walkscore::Client.new(api_key: API_KEY).find(lat: 40.7143528 , long: -74.0059730999999)
 That's it!  You're response will be a Walkscore object where you have access to the following methods
 + score
 + description

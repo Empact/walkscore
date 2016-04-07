@@ -1,8 +1,10 @@
 require 'spec_helper'
 
-class MockClient
-  def make_connection(location, api_key)
-    <<-eos
+describe Walkscore do
+  let(:client) { Walkscore::Client.new(api_key: 'FAKE_API_KEY') }
+
+  before(:each) do
+    allow(client).to receive(:make_connection).and_return(<<-eos)
       {\n\"status\": 1  \n,
        \"walkscore\": 100\n,
        \"description\": \"Walker's Paradise\"\n,
@@ -14,17 +16,11 @@ class MockClient
        \"snapped_lon\": -74.0055  \n\n\n\n}
     eos
   end
-end
-
-describe Walkscore::Walkscore do
-  before(:each) do
-    allow(Walkscore::Walkscore).to receive(:client).and_return(MockClient.new)
-  end
 
   describe '.find(location, api_key)' do
-    it 'returns an instance of WalkscoreApi::Walkscore' do
-      expect(Walkscore::Walkscore.find({lat: 40.7143528 , long: -74.00597309999999}, 'FAKE_API_KEY')).
-        to be_a(Walkscore::Walkscore)
+    it 'returns an instance of Walkscore::Walkscore' do
+      expect(client.find(lat: 40.7143528 , long: -74.00597309999999)).
+        to be_a(Walkscore::Response)
     end
   end
 end
