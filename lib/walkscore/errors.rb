@@ -1,12 +1,15 @@
 module Walkscore
-  class Error < StandardError
+  class ArgumentError < ::ArgumentError
   end
 
-  InvalidApiKey = Class.new(Error)
+  class Error < ::RuntimeError
+  end
+
+  InvalidApiKey = Class.new(ArgumentError)
   DailyQuotaExceeded = Class.new(Error)
   UnexpectedStatus = Class.new(Error)
   IpAddressBlocked = Class.new(Error)
-  InvalidLatLong = Class.new(Error)
+  InvalidLatLong = Class.new(ArgumentError)
   InternalError = Class.new(Error)
   UnexpectedResponseCode = Class.new(Error)
 end
