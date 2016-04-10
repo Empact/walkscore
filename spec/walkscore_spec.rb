@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Walkscore do
+RSpec.describe Walkscore do
   let(:client) { Walkscore::Client.new(api_key: 'FAKE_API_KEY') }
 
   before(:each) do

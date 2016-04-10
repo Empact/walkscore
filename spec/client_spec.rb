@@ -2,7 +2,7 @@ require 'spec_helper'
 require 'support/vcr'
 require 'support/dotenv'
 
-describe Walkscore::Client do
+RSpec.describe Walkscore::Client do
   describe '#find_json', :vcr do
     let(:api_key) { ENV['WALKSCORE_API_KEY'] }
     let(:client) { Walkscore::Client.new(api_key: api_key) }
