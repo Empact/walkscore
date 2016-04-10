@@ -11,12 +11,10 @@ module Walkscore
     end
 
     def find(location)
-      if response = make_connection(location)
-        Response.new(response)
-      end
+      Response.new(find_json(location))
     end
 
-    def make_connection(location)
+    def find_json(location)
       response = @connection.get do |req|
         req.url '/score'
         req.headers['Accepts'] = 'application/json'

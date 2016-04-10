@@ -4,7 +4,7 @@ describe Walkscore do
   let(:client) { Walkscore::Client.new(api_key: 'FAKE_API_KEY') }
 
   before(:each) do
-    allow(client).to receive(:make_connection).and_return(<<-eos)
+    allow(client).to receive(:find_json).and_return(JSON.parse(<<-eos))
       {\n\"status\": 1  \n,
        \"walkscore\": 100\n,
        \"description\": \"Walker's Paradise\"\n,
