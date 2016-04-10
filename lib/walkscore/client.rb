@@ -33,20 +33,20 @@ module Walkscore
         when 1, 2
           json_body
         when 40
-          raise InvalidApiKey.new(response)
+          raise InvalidApiKey.new(response.body)
         when 41
-          raise DailyQuotaExceeded.new(response)
+          raise DailyQuotaExceeded.new(response.body)
         else
-          raise UnexpectedStatus.new(response)
+          raise UnexpectedStatus.new(response.body)
         end
       when 403
-        raise IpAddressBlocked.new(response)
+        raise IpAddressBlocked.new(response.body)
       when 404
-        raise InvalidLatLong.new(response)
+        raise InvalidLatLong.new(response.body)
       when 500..599
-        raise InternalError.new(response)
+        raise InternalError.new(response.body)
       else
-        raise UnexpectedResponseCode.new(response)
+        raise UnexpectedResponseCode.new(response.body)
       end
     end
   end
