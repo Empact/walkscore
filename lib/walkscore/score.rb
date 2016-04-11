@@ -2,6 +2,22 @@ require 'json'
 
 module Walkscore
   class Score
+    # Link to the Walk Score logo.
+    LOGO_URL = "https://cdn.walk.sc/images/api-logo.png"
+    # Link to question mark icon to display next to the score.
+    MORE_INFO_ICON = "https://cdn.walk.sc/images/api-more-info.gif"
+    # URL for the question mark to link to.
+    MORE_INFO_LINK = "https://www.redfin.com/how-walk-score-works"
+    # A link to the "How Walk Score Works" page.
+    HELP_LINK = "https://www.redfin.com/how-walk-score-works"
+
+    STANDARD = {
+      'logo_url' => LOGO_URL,
+      'more_info_icon' => MORE_INFO_ICON,
+      'more_info_link' => MORE_INFO_LINK,
+      'help_link' => HELP_LINK
+    }
+
     attr_reader :status, :score, :description, :updated,
       :logo_url, :more_info_icon, :more_info_link, :ws_link, :help_link,
       :snapped_lat, :snapped_lon

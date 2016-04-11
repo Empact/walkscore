@@ -39,6 +39,9 @@ RSpec.describe Walkscore::Score do
           described_class.find_json(lat: 40.7143528 , long: -74.00597309999999)
         end
         expect(result['status']).to eq(1)
+        Walkscore::Score::STANDARD.each do |key, value|
+          expect(result[key]).to eq(value)
+        end
       end
 
       context 'when the api key is bad' do
