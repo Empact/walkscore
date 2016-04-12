@@ -7,7 +7,7 @@ module Walkscore
   BASE_URL = 'http://api.walkscore.com'
 
   class << self
-    attr_accessor :api_key
+    attr_accessor :api_key, :premium
 
     def http_client
       if !api_key || api_key.empty?
